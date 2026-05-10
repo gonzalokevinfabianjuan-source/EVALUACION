@@ -1,14 +1,14 @@
-    /* ══════════════════════════════════════════
+/* ══════════════════════════════════════════
        VARIABLES CSS — paleta tradicional japonesa
        Se usan con var(--nombre) en todo el CSS
     ══════════════════════════════════════════ */
     :root {
-      --washi:  #f5f0e8;   /* papel washi — fondo principal */
-      --sumi:   #2b2420;   /* tinta sumi — negro cálido */
-      --beni:   #9b2335;   /* rojo beni — acento fuerte */
-      --tsuchi: #c4a882;   /* tierra / beige dorado */
-      --kiri:   #e8e2d6;   /* niebla / gris cálido */
-      --take:   #5c6b3a;   /* verde bambú */
+      --washi:  #f5f0e8;
+      --sumi:   #2b2420;
+      --beni:   #9b2335;
+      --tsuchi: #c4a882;
+      --kiri:   #e8e2d6;
+      --take:   #5c6b3a;
 
       --fuente-titulo: 'Noto Serif JP', serif;
       --fuente-cuerpo: 'Zen Kaku Gothic New', sans-serif;
@@ -24,11 +24,6 @@
       line-height: 1.7;
     }
 
-    /* ══════════════════════════════════════════
-       HEADER
-       position: sticky → se queda fijo al hacer scroll
-       border-bottom: 3px → línea roja decorativa inferior
-    ══════════════════════════════════════════ */
     header {
       background: var(--sumi);
       padding: 1rem 1.5rem;
@@ -51,10 +46,6 @@
     .logo .kanji  { color: var(--tsuchi); margin-right: 8px; font-weight: 700; }
     .logo .acento { color: var(--beni); }
 
-    /* ══════════════════════════════════════════
-       BOTÓN HAMBURGUESA
-       classList.toggle('activo') en JS muestra/oculta el nav
-    ══════════════════════════════════════════ */
     #btn-hamburguesa {
       background: transparent;
       border: 1.5px solid var(--tsuchi);
@@ -72,10 +63,6 @@
       color: white;
     }
 
-    /* ══════════════════════════════════════════
-       NAV — oculto por defecto en móvil
-       Se muestra cuando JS agrega la clase .activo
-    ══════════════════════════════════════════ */
     nav#menu-nav {
       display: none;
       background: #1e1a17;
@@ -101,7 +88,6 @@
       border-left: 3px solid var(--beni);
     }
 
-    /* En pantallas ≥768px: nav horizontal, siempre visible */
     @media (min-width: 768px) {
       #btn-hamburguesa { display: none; }
       nav#menu-nav {
@@ -125,11 +111,6 @@
       }
     }
 
-    /* ══════════════════════════════════════════
-       HERO — sección de portada
-       ::before y ::after crean círculos decorativos
-       sin tocar el HTML (pseudo-elementos)
-    ══════════════════════════════════════════ */
     .hero {
       background: var(--sumi);
       color: var(--washi);
@@ -203,9 +184,6 @@
       letter-spacing: 6px;
     }
 
-    /* ══════════════════════════════════════════
-       DIVISOR DECORATIVO — línea con símbolo
-    ══════════════════════════════════════════ */
     .divisor {
       display: flex;
       align-items: center;
@@ -230,9 +208,7 @@
     }
 
     /* ══════════════════════════════════════════
-       GALERÍA AUTOMÁTICA
-       Las imágenes rotan con setInterval en JS
-       opacity + transition hacen el efecto fade
+       GALERÍA — CORREGIDA
     ══════════════════════════════════════════ */
     .galeria {
       background: #1e1a17;
@@ -250,34 +226,32 @@
     .galeria h2 .acento { color: var(--beni); }
 
     .galeria-frame {
-      position: relative;
+      position: relative;          /* contenedor de referencia para los slides */
       width: 100%;
       max-width: 560px;
+      height: 350px;               /* altura fija — todos los slides la respetan */
       margin: 0 auto;
-      aspect-ratio: 4/3;
       border: 1px solid var(--tsuchi);
       border-radius: 2px;
       overflow: hidden;
     }
+
+    /* PRIMERO el slide, DESPUÉS la imagen — orden importa */
     .galeria-frame .slide {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      font-family: var(--fuente-titulo);
-      color: var(--washi);
+      position: absolute;          /* todos ocupan el mismo espacio */
+      inset: 0;                    /* top/right/bottom/left: 0 de una vez */
       opacity: 0;
-      transition: opacity 1s ease; /* fade suave */
+      transition: opacity 1s ease;
     }
     .galeria-frame .slide.activo { opacity: 1; }
-    .galeria-frame .slide:nth-child(1) { background: linear-gradient(160deg,#3d1f1f,#6b2c2c); }
-    .galeria-frame .slide:nth-child(2) { background: linear-gradient(160deg,#1a2e1a,#2e4d2e); }
-    .galeria-frame .slide:nth-child(3) { background: linear-gradient(160deg,#1f1f35,#3a3055); }
-    .slide-emoji { font-size: 3.5rem; }
-    .slide-texto { font-size: 0.85rem; letter-spacing: 5px; opacity: 0.8; }
+
+    .galeria-frame .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;           /* llena el frame sin deformarse */
+      object-position: center;
+      display: block;
+    }
 
     .galeria-dots { margin-top: 1.2rem; }
     .dot {
@@ -290,11 +264,6 @@
     }
     .dot.activo { background: var(--tsuchi); transform: scale(1.5); }
 
-    /* ══════════════════════════════════════════
-       MENÚ DE PLATOS — grid responsive
-       Mobile First: empieza en 1 columna
-       y crece con @media queries
-    ══════════════════════════════════════════ */
     .menu-platos {
       padding: 5rem 1.5rem;
       background: var(--washi);
@@ -311,16 +280,16 @@
 
     .cards-grid {
       display: grid;
-      grid-template-columns: 1fr;           /* móvil: 1 columna */
+      grid-template-columns: 1fr;
       gap: 1.5rem;
       max-width: 960px;
       margin: 0 auto;
     }
     @media (min-width: 576px) {
-      .cards-grid { grid-template-columns: repeat(2, 1fr); } /* tablet: 2 columnas */
+      .cards-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (min-width: 900px) {
-      .cards-grid { grid-template-columns: repeat(3, 1fr); } /* desktop: 3 columnas */
+      .cards-grid { grid-template-columns: repeat(3, 1fr); }
     }
 
     .card-plato {
@@ -358,11 +327,6 @@
       text-transform: uppercase;
     }
 
-    /* ══════════════════════════════════════════
-       REDES SOCIALES
-       Los colores cambian con mouseenter/mouseleave en JS
-       transition hace el cambio suave
-    ══════════════════════════════════════════ */
     .redes {
       background: var(--sumi);
       padding: 4rem 1.5rem;
@@ -402,11 +366,6 @@
       transition: color 0.3s;
     }
 
-    /* ══════════════════════════════════════════
-       FORMULARIO DE CONTACTO
-       event.preventDefault() + SweetAlert2 en JS
-       Los inputs tienen border-bottom animado al :focus
-    ══════════════════════════════════════════ */
     .contacto {
       padding: 5rem 1.5rem;
       background: var(--kiri);
@@ -470,9 +429,6 @@
     }
     .btn-enviar:hover { background: var(--beni); color: white; letter-spacing: 6px; }
 
-    /* ══════════════════════════════════════════
-       FOOTER
-    ══════════════════════════════════════════ */
     footer {
       background: #1a1512;
       padding: 2rem 1.5rem;
@@ -481,31 +437,26 @@
     }
     footer p { color: #665550; font-size: 0.8rem; letter-spacing: 2px; }
     footer .marca { color: var(--tsuchi); }
-/* Agrégalo en tu <style> o en css/style.css */
 
-#btn-whatsapp {
-  position: fixed;        /* se queda fijo en la ventana, no en la página */
-  bottom: 1.5rem;         /* distancia desde el borde inferior */
-  right: 1.5rem;          /* distancia desde el borde derecho */
-  z-index: 9999;          /* encima de todo lo demás */
-
-  background: #1B8F4B;    /* verde más oscuro para mejor contraste */
-  color: white;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;     /* círculo perfecto */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.7rem;
-  text-decoration: none;
-  box-shadow: 0 4px 16px rgba(37,211,102,0.4);
-
-  /* Animación suave al hacer hover */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-#btn-whatsapp:hover {
-  transform: scale(1.12);
-  box-shadow: 0 6px 24px rgba(37,211,102,0.6);
-}
+    #btn-whatsapp {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 9999;
+      background: #1B8F4B;
+      color: white;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.7rem;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(37,211,102,0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    #btn-whatsapp:hover {
+      transform: scale(1.12);
+      box-shadow: 0 6px 24px rgba(37,211,102,0.6);
+    }
