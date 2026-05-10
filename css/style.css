@@ -1,0 +1,462 @@
+/* ══════════════════════════════════════════
+       VARIABLES CSS — paleta tradicional japonesa
+       Se usan con var(--nombre) en todo el CSS
+    ══════════════════════════════════════════ */
+    :root {
+      --washi:  #f5f0e8;
+      --sumi:   #2b2420;
+      --beni:   #9b2335;
+      --tsuchi: #c4a882;
+      --kiri:   #e8e2d6;
+      --take:   #5c6b3a;
+
+      --fuente-titulo: 'Noto Serif JP', serif;
+      --fuente-cuerpo: 'Zen Kaku Gothic New', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--fuente-cuerpo);
+      background-color: var(--washi);
+      color: var(--sumi);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    header {
+      background: var(--sumi);
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      border-bottom: 3px solid var(--beni);
+    }
+
+    .logo {
+      font-family: var(--fuente-titulo);
+      color: var(--washi);
+      font-size: 1.4rem;
+      font-weight: 300;
+      letter-spacing: 4px;
+    }
+    .logo .kanji  { color: var(--tsuchi); margin-right: 8px; font-weight: 700; }
+    .logo .acento { color: var(--beni); }
+
+    #btn-hamburguesa {
+      background: transparent;
+      border: 1.5px solid var(--tsuchi);
+      color: var(--tsuchi);
+      padding: 6px 14px;
+      border-radius: 2px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: var(--fuente-cuerpo);
+    }
+    #btn-hamburguesa:hover {
+      background: var(--beni);
+      border-color: var(--beni);
+      color: white;
+    }
+
+    nav#menu-nav {
+      display: none;
+      background: #1e1a17;
+      padding: 0;
+      border-bottom: 2px solid var(--tsuchi);
+    }
+    nav#menu-nav.activo { display: block; }
+
+    nav#menu-nav a {
+      display: block;
+      color: var(--kiri);
+      text-decoration: none;
+      padding: 0.9rem 1.8rem;
+      font-size: 0.9rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      border-bottom: 1px solid #333;
+      transition: color 0.3s, padding-left 0.3s;
+    }
+    nav#menu-nav a:hover {
+      color: var(--tsuchi);
+      padding-left: 2.5rem;
+      border-left: 3px solid var(--beni);
+    }
+
+    @media (min-width: 768px) {
+      #btn-hamburguesa { display: none; }
+      nav#menu-nav {
+        display: flex !important;
+        background: var(--sumi);
+        border-bottom: none;
+        padding: 0 1.5rem;
+        justify-content: flex-end;
+      }
+      nav#menu-nav a {
+        display: inline-block;
+        padding: 1rem 1.2rem;
+        border-bottom: none;
+        font-size: 0.8rem;
+      }
+      nav#menu-nav a:hover {
+        padding-left: 1.2rem;
+        border-left: none;
+        border-bottom: 2px solid var(--beni);
+        color: var(--tsuchi);
+      }
+    }
+
+    .hero {
+      background: var(--sumi);
+      color: var(--washi);
+      text-align: center;
+      padding: 7rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 420px; height: 420px;
+      border: 2px solid rgba(196,168,130,0.12);
+      border-radius: 50%;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 280px; height: 280px;
+      border: 1px solid rgba(155,35,53,0.2);
+      border-radius: 50%;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .hero-contenido { position: relative; z-index: 2; }
+
+    .hero-kanji {
+      font-family: var(--fuente-titulo);
+      font-size: 1rem;
+      color: var(--tsuchi);
+      letter-spacing: 8px;
+      margin-bottom: 0.8rem;
+      opacity: 0.7;
+    }
+    .hero h1 {
+      font-family: var(--fuente-titulo);
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 300;
+      letter-spacing: 6px;
+      margin-bottom: 1rem;
+    }
+    .hero h1 .acento { color: var(--beni); }
+    .hero p {
+      font-size: 1rem;
+      color: var(--kiri);
+      letter-spacing: 2px;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+    .btn-reserva {
+      background: transparent;
+      color: var(--tsuchi);
+      border: 1.5px solid var(--tsuchi);
+      padding: 0.8rem 3rem;
+      font-family: var(--fuente-cuerpo);
+      font-size: 0.85rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      border-radius: 1px;
+    }
+    .btn-reserva:hover {
+      background: var(--beni);
+      border-color: var(--beni);
+      color: white;
+      letter-spacing: 6px;
+    }
+
+    .divisor {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 2.5rem 2rem 0;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .divisor::before,
+    .divisor::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--tsuchi);
+      opacity: 0.35;
+    }
+    .divisor span {
+      font-family: var(--fuente-titulo);
+      color: var(--tsuchi);
+      font-size: 1.2rem;
+      opacity: 0.6;
+    }
+
+    /* ══════════════════════════════════════════
+       GALERÍA — CORREGIDA
+    ══════════════════════════════════════════ */
+    .galeria {
+      background: #1e1a17;
+      padding: 5rem 1.5rem;
+      text-align: center;
+    }
+    .galeria h2 {
+      font-family: var(--fuente-titulo);
+      color: var(--washi);
+      font-size: 1.6rem;
+      font-weight: 300;
+      letter-spacing: 6px;
+      margin-bottom: 2rem;
+    }
+    .galeria h2 .acento { color: var(--beni); }
+
+    .galeria-frame {
+      position: relative;          /* contenedor de referencia para los slides */
+      width: 100%;
+      max-width: 560px;
+      height: 350px;               /* altura fija — todos los slides la respetan */
+      margin: 0 auto;
+      border: 1px solid var(--tsuchi);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    /* PRIMERO el slide, DESPUÉS la imagen — orden importa */
+    .galeria-frame .slide {
+      position: absolute;          /* todos ocupan el mismo espacio */
+      inset: 0;                    /* top/right/bottom/left: 0 de una vez */
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+    .galeria-frame .slide.activo { opacity: 1; }
+
+    .galeria-frame .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;           /* llena el frame sin deformarse */
+      object-position: center;
+      display: block;
+    }
+
+    .galeria-dots { margin-top: 1.2rem; }
+    .dot {
+      display: inline-block;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #555;
+      margin: 0 5px;
+      transition: background 0.4s, transform 0.3s;
+    }
+    .dot.activo { background: var(--tsuchi); transform: scale(1.5); }
+
+    .menu-platos {
+      padding: 5rem 1.5rem;
+      background: var(--washi);
+    }
+    .menu-platos h2 {
+      font-family: var(--fuente-titulo);
+      font-size: 1.6rem;
+      font-weight: 300;
+      letter-spacing: 6px;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .menu-platos h2 .acento { color: var(--beni); }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    @media (min-width: 576px) {
+      .cards-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 900px) {
+      .cards-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .card-plato {
+      background: white;
+      border: 1px solid var(--kiri);
+      border-top: 3px solid var(--beni);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border-radius: 2px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card-plato:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(43,36,32,0.12);
+    }
+    .card-plato .emoji-plato { font-size: 2.8rem; display: block; margin-bottom: 1rem; }
+    .card-plato h3 {
+      font-family: var(--fuente-titulo);
+      font-size: 1.1rem;
+      font-weight: 400;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+    }
+    .card-plato .desc { font-size: 0.85rem; color: #888; margin-bottom: 1rem; line-height: 1.5; }
+    .card-plato .precio { color: var(--beni); font-size: 1.2rem; font-weight: 700; font-family: var(--fuente-titulo); }
+    .card-plato .tag {
+      display: inline-block;
+      background: var(--kiri);
+      color: var(--take);
+      font-size: 0.7rem;
+      padding: 2px 10px;
+      letter-spacing: 2px;
+      margin-bottom: 0.8rem;
+      border-radius: 1px;
+      text-transform: uppercase;
+    }
+
+    .redes {
+      background: var(--sumi);
+      padding: 4rem 1.5rem;
+      text-align: center;
+    }
+    .redes h2 {
+      font-family: var(--fuente-titulo);
+      color: var(--kiri);
+      font-size: 1.4rem;
+      font-weight: 300;
+      letter-spacing: 6px;
+      margin-bottom: 0.5rem;
+    }
+    .redes .subtitulo {
+      color: var(--tsuchi);
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      margin-bottom: 2.5rem;
+      opacity: 0.7;
+    }
+    .iconos-redes { display: flex; justify-content: center; gap: 3rem; }
+    .icon-red {
+      font-size: 1.8rem;
+      color: #666;
+      cursor: pointer;
+      transition: color 0.3s, transform 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .icon-red .nombre-red {
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #555;
+      transition: color 0.3s;
+    }
+
+    .contacto {
+      padding: 5rem 1.5rem;
+      background: var(--kiri);
+    }
+    .contacto-inner { max-width: 560px; margin: 0 auto; }
+    .contacto h2 {
+      font-family: var(--fuente-titulo);
+      font-size: 1.6rem;
+      font-weight: 300;
+      letter-spacing: 6px;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .contacto .subtitulo {
+      text-align: center;
+      color: var(--tsuchi);
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      margin-bottom: 2.5rem;
+    }
+    .form-grupo { margin-bottom: 1.2rem; }
+    .form-grupo label {
+      display: block;
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 0.4rem;
+    }
+    .form-grupo input,
+    .form-grupo textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: white;
+      border: 1px solid var(--kiri);
+      border-bottom: 2px solid var(--tsuchi);
+      border-radius: 1px;
+      font-family: var(--fuente-cuerpo);
+      font-size: 0.95rem;
+      color: var(--sumi);
+      transition: border-color 0.3s;
+      outline: none;
+    }
+    .form-grupo input:focus,
+    .form-grupo textarea:focus { border-bottom-color: var(--beni); }
+    .form-grupo textarea { resize: vertical; min-height: 130px; }
+
+    .btn-enviar {
+      width: 100%;
+      background: var(--sumi);
+      color: var(--tsuchi);
+      border: none;
+      padding: 1rem;
+      font-family: var(--fuente-cuerpo);
+      font-size: 0.85rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 1px;
+      transition: background 0.4s, letter-spacing 0.3s;
+    }
+    .btn-enviar:hover { background: var(--beni); color: white; letter-spacing: 6px; }
+
+    footer {
+      background: #1a1512;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border-top: 2px solid var(--beni);
+    }
+    footer p { color: #665550; font-size: 0.8rem; letter-spacing: 2px; }
+    footer .marca { color: var(--tsuchi); }
+
+    #btn-whatsapp {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 9999;
+      background: #1B8F4B;
+      color: white;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.7rem;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(37,211,102,0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    #btn-whatsapp:hover {
+      transform: scale(1.12);
+      box-shadow: 0 6px 24px rgba(37,211,102,0.6);
+    }
